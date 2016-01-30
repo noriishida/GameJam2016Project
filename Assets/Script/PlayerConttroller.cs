@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerConttroller : MonoBehaviour {
 
 	public GameObject mouse;
-//	private float timer;
+	private float timer;
 
 	private bool jumpFlug;
 	private float originPosY;
@@ -22,7 +22,9 @@ public class PlayerConttroller : MonoBehaviour {
 		{
 			var inputX = Input.GetAxisRaw("Horizontal");
 			var inputJump = Input.GetButton("Jump");
+			timer = Time.deltaTime;
 
+			gameObject.transform.Rotate (0 ,inputX * timer *10 ,0 );
 
 			if (inputJump) 
 			{
