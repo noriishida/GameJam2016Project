@@ -10,7 +10,7 @@ public class PlayFlagManager : MonoBehaviour {
 
 	private string objName = "Text01";
 	private GameObject textobj;
-	public Text textComponent;
+	private Text textComponent;
 
 	void Start () 
 	{
