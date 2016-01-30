@@ -10,7 +10,10 @@ public class MoveScene : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+		if (Application.loadedLevelName == "StartScene_test")
+		{
+			ChangeScene ();
+		}
 	}
 
 	public void ChangeScene()
