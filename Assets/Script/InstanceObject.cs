@@ -44,7 +44,7 @@ public class InstanceObject : MonoBehaviour {
 	}
 
 	public void OnUpdateScore() {
-		this.score += this.woodSpeed * Time.deltaTime;
+		this.score += this.woodSpeed * Time.deltaTime * 0.1F;
 		this.ScoreText.text = this.score.ToString("0");
 
 	}
