@@ -21,9 +21,12 @@ public class PlayerConttroller : MonoBehaviour {
 			timer = Time.deltaTime;
 			var inputX = Input.GetAxisRaw("Horizontal");
 			var inputJump = Input.GetButton("Jump");
-			gameObject.transform.Rotate (inputX * timer *10 ,0 , 0);
+			gameObject.transform.Rotate (0 ,inputX * timer *10 ,0 );
 
-
+			if(inputJump)
+			{
+				
+			}
 		}	
 	}
 }
