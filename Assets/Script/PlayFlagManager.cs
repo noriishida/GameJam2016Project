@@ -12,8 +12,14 @@ public class PlayFlagManager : MonoBehaviour {
 	private GameObject textobj;
 	public Text textComponent;
 
+	public GameObject InstanceManager;
+	public delegate void ScoreUpdate();
+	public ScoreUpdate scoreUpdate;
+
 	void Start () 
 	{
+		this.scoreUpdate = () => { };
+
 		textobj = GameObject.Find (objName);
 		textComponent = textobj.GetComponent<Text> ();
 		StartCoroutine (CountDown());
@@ -30,6 +36,8 @@ public class PlayFlagManager : MonoBehaviour {
 		textComponent.text = "1";
 		yield return new WaitForSeconds (1);
 		textComponent.text = "START!";
+		this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().OnUpdateScore;		// delegate
+
 		isPlaying = true;
 		yield return new WaitForSeconds (1.5f);
 		textobj.SetActive (false);
@@ -44,6 +52,7 @@ public class PlayFlagManager : MonoBehaviour {
 
 		}
 		GameConplete ();
+		this.scoreUpdate();
 	}
 
 	void GameConplete()
