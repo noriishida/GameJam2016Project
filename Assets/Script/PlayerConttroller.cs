@@ -6,7 +6,8 @@ public class PlayerConttroller : MonoBehaviour {
 	public GameObject mouse;
 	private float timer;
 
-	private float jumpPower = -4.0f;
+	private const float GRAVITY = 9.8f;
+	private Vector3 mouseMove;
 
 	void Start()
 	{
@@ -21,15 +22,9 @@ public class PlayerConttroller : MonoBehaviour {
 			var inputJump = Input.GetButton("Jump");
 			gameObject.transform.Rotate (0, inputX * timer *10, 0);
 
-//			if(inputJump)
-//			{
-//				float posZ = mouse.transform.position.z;
-//				mouse.transform.position.z += jumpPower * timer;
-//				if(mouse.transform.position.z > posZ + jumpPower)
-//				{
-//					mouse.transform.position.z += jumpPower * timer;
-//				}
-//			}
+			mouseMove = new Vector3 (0, 0, mouse.transform.position.z);
+			mouseMove.z -= GRAVITY;
+//			mouse.transform.position = mouseMove;
 		}	
 	}
 }
