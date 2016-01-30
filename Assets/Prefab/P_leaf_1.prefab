@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3306260}
   - 23: {fileID: 2367642}
   m_Layer: 0
-  m_Name: M_leaf_1
+  m_Name: P_leaf_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,8 +24,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176792}
   m_LocalRotation: {x: -0.5527664, y: 0.57201797, z: 0.5956237, w: 0.11170204}
-  m_LocalPosition: {x: 0, y: 4.94, z: -9.7}
-  m_LocalScale: {x: 3.64297, y: 3.64297, z: 3.64297}
+  m_LocalPosition: {x: 9.01, y: 4.94, z: -9.7}
+  m_LocalScale: {x: 5.496984, y: 5.496985, z: 5.496985}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
