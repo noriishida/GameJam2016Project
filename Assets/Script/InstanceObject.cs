@@ -3,24 +3,21 @@ using System.Collections;
 
 public class InstanceObject : MonoBehaviour {
 
-	public GameObject wood;
+	public GameObject parentWood;
+	public GameObject childWood;
 
 	void Start () 
 	{
-		//二本分ステージをインスタンス
-
-
 	}
 	
 	void Update () 
 	{
-		//プレイヤーが乗っている部分が一定のところまで行くと次をインスタンス
 
 	}
 
-	void InstanceWoods(Vector2 vec2)
+	public void InstanceWoods(float y)
 	{
-		//引数を位置情報としてインスタンス
-
+		var cloneWood = Instantiate(childWood, new Vector3(0,y,0), Quaternion.identity) as GameObject;
+		cloneWood.transform.parent = parentWood.transform;
 	}
 }

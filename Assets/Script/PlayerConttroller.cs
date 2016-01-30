@@ -3,13 +3,12 @@ using System.Collections;
 
 public class PlayerConttroller : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
 	void Update () {
-	
+		if (PlayFlagManager.isPlaying)
+		{
+			var inputX = Input.GetAxisRaw("Horizontal");
+			var inputJump = Input.GetButtonDown("Jump");
+			gameObject.transform.Rotate (0, inputX * Time.deltaTime*10, 0);
+		}	
 	}
 }
