@@ -6,6 +6,9 @@ public class PlayerConttroller : MonoBehaviour {
 	public GameObject mouse;
 	private float timer;
 
+	private float jumpPower = -4.0f;
+	private float ;
+
 	private Animator anim;
 
 	void Start()
@@ -18,14 +21,17 @@ public class PlayerConttroller : MonoBehaviour {
 		{
 			timer = Time.deltaTime;
 			var inputX = Input.GetAxisRaw("Horizontal");
-			var inputJumpUp = Input.GetButtonDown("Jump");
-			var inputJumpDown = Input.GetButtonUp("Jump");
+			var inputJump = Input.GetButton("Jump");
 			gameObject.transform.Rotate (0, inputX * timer *10, 0);
-			if (inputJumpUp) {
-				anim.SetBool ("Jump", true);
-			}
-			if (inputJumpDown) {
-				anim.SetBool ("Jump", false);
+
+			if(inputJump)
+			{
+				float posZ = mouse.transform.position.z;
+				mouse.transform.position.z += jumpPower * timer;
+				if(mouse.transform.position.z > posZ + jumpPower)
+				{
+					mouse.transform.position.z += jumpPower * timer;
+				}
 			}
 		}	
 	}

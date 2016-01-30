@@ -6,8 +6,12 @@ public class InstanceObject : MonoBehaviour {
 	public GameObject parentWood;
 	public GameObject childWood;
 
+	//１分約２０回カウントされる
+	static public int instanceCount = 0;
+
 	void Start () 
 	{
+		
 	}
 	
 	void Update () 
@@ -19,5 +23,6 @@ public class InstanceObject : MonoBehaviour {
 	{
 		var cloneWood = Instantiate(childWood, new Vector3(0,y,0), Quaternion.identity) as GameObject;
 		cloneWood.transform.parent = parentWood.transform;
+		instanceCount += 1;
 	}
 }
