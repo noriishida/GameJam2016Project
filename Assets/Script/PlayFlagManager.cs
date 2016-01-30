@@ -71,7 +71,6 @@ public class PlayFlagManager : MonoBehaviour {
     {
         if (isGameOver)
         {
-            var textobj = GameObject.Find(objName) as GameObject;
             textobj.SetActive(true);
             StartCoroutine(GO());
 
@@ -84,11 +83,6 @@ public class PlayFlagManager : MonoBehaviour {
         yield return new WaitForSeconds(3);
         textComponent.text = "GAMEOVER";
         yield return new WaitForSeconds(3);
-        textComponent.text = "Please";
-        yield return new WaitForSeconds(3);
-        textComponent.text = "space";
-        yield return new WaitForSeconds(3);
-        var textobj = GameObject.Find(objName) as GameObject;
-        textobj.SetActive(false);
+		textComponent.text = "Please Space Key";
     }
 }

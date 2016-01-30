@@ -4,28 +4,37 @@ using System.Collections;
 public class PlayerConttroller : MonoBehaviour {
 
 	public GameObject mouse;
-	private float timer;
+//	private float timer;
 
-	private bool jumppingFlug;
-	private CharacterController characterController;
+	private bool jumpFlug;
+	private float originPosY;
 	private Rigidbody rb;
 
 	void Start()
 	{
+		jumpFlug = false;
+		originPosY = mouse.transform.position.y;
 		rb = mouse.GetComponent<Rigidbody> ();
-		characterController = mouse.GetComponent<CharacterController> ();
 	}
 
 	void Update () {
 		if (PlayFlagManager.isPlaying)
 		{
-			timer = Time.deltaTime;
 			var inputX = Input.GetAxisRaw("Horizontal");
 			var inputJump = Input.GetButton("Jump");
 
 
-			if (inputJump) {
-				rb.AddForce (Vector3.up * 30);
+			if (inputJump) 
+			{
+				if(!jumpFlug)
+				{
+					rb.AddForce (Vector3.up * 100);
+					jumpFlug = true;
+				}
+			}
+			if (mouse.transform.position.y <= originPosY)
+			{
+				jumpFlug = false;
 			}
 		}	
 	}
