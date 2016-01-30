@@ -16,17 +16,27 @@ public class HitManager : MonoBehaviour {
 	public void hoge(){
 	}
 
-	void OnTriggerEnter(Collider col)
+  
+
+    void OnTriggerEnter(Collider collider)
 	{
-		if (col.tag == "Enemy")
-		{
-			//ゲームオーバー処理
+		if (collider.gameObject.tag == "Enemy")
+        {
 
-			//操作フラグの切り替え
+            //ゲームオーバー処理
+            Destroy(gameObject);
+            //操作フラグの切り替え
+            PlayFlagManager.isPlaying = false;
+            //UI表示
+            PlayFlagManager.isGameOver = true;
 
-			//UI表示
+            //スタート画面準備
+            if (Input.GetKey(KeyCode.Space))
+            {
+                int levelIndex = Application.loadedLevel;
+            }
 
-			//スタート画面準備
-		}
-	}
+        }
+        
+    }
 }
