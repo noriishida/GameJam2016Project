@@ -8,11 +8,13 @@ public class PlayFlagManager : MonoBehaviour {
 	static public bool isGameConplete = false;
 
 	private string objName = "Text01";
+	private GameObject uiObjct;
 	public Text textComponent;
 
 	void Start () 
 	{
-		textComponent = GameObject.Find (objName).GetComponent<Text> ();
+		uiObjct = GameObject.Find (objName) as GameObject;
+		textComponent = uiObjct.GetComponent<Text> ();
 		StartCoroutine (CountDown());
 	}
 
@@ -29,13 +31,12 @@ public class PlayFlagManager : MonoBehaviour {
 		textComponent.text = "START!";
 		isPlaying = true;
 		yield return new WaitForSeconds (1.5f);
-		var textobj = GameObject.Find (objName) as GameObject;
-		textobj.SetActive (false);
+		uiObjct.SetActive (false);
 	}
 	
 	void Update ()
 	{
-		if (InstanceObject.instanceCount <= 20)
+		if (InstanceObject.instanceCount >= 20)
 		{
 			isPlaying = false;
 			isGameConplete = true;
@@ -48,8 +49,7 @@ public class PlayFlagManager : MonoBehaviour {
 	{
 		if (isGameConplete)
 		{
-			var textobj = GameObject.Find (objName) as GameObject;
-			textobj.SetActive (true);
+			uiObjct.SetActive (true);
 			textComponent.text = "Complete!";
 		}
 	}
