@@ -54,11 +54,8 @@ public class PlayFlagManager : MonoBehaviour {
 
 		}
 		GameConplete ();
-<<<<<<< HEAD
         GameOver();
-=======
 		this.scoreUpdate();
->>>>>>> 48d4e37e637edb62138b380f211f16db8747b576
 	}
 
 	void GameConplete()
