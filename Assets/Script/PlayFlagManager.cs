@@ -4,13 +4,15 @@ using System.Collections;
 
 public class PlayFlagManager : MonoBehaviour {
 
-	static public bool isPlaying = false;
-	static public bool isGameConplete = false;
-    static public bool isGameOver = false;
+	static public bool isPlaying;
+	static public bool isGameConplete;
+    static public bool isGameOver;
 
 
-	private string objName = "Text01";
-	private GameObject textobj;
+	private string objName01 = "Text01";
+	private string objName02 = "Text02";
+	private GameObject textObj01;
+	private GameObject textObj02;
 	private Text textComponent;
 
 	public GameObject InstanceManager;
@@ -20,11 +22,15 @@ public class PlayFlagManager : MonoBehaviour {
 	void Start () 
 	{
 		this.scoreUpdate = () => { };
+		isPlaying = false;
+		isGameConplete = false;
+		isGameOver = false;
 
-		textobj = GameObject.Find (objName);
-		textComponent = textobj.GetComponent<Text> ();
+		textObj01 = GameObject.Find (objName01);
+		textObj02 = GameObject.Find (objName02);
+		textObj02.SetActive (false);
+		textComponent = textObj01.GetComponent<Text> ();
 		StartCoroutine (CountDown());
-        StartCoroutine(GO());
     }
 
 	IEnumerator CountDown()
@@ -42,7 +48,7 @@ public class PlayFlagManager : MonoBehaviour {
 
 		isPlaying = true;
 		yield return new WaitForSeconds (1.5f);
-		textobj.SetActive (false);
+		textObj01.SetActive (false);
 	}
 	
 	void Update ()
@@ -62,7 +68,8 @@ public class PlayFlagManager : MonoBehaviour {
 	{
 		if (isGameConplete)
 		{
-			textobj.SetActive (true);
+			textObj01.SetActive (true);
+			textObj02.SetActive (true);
 			textComponent.text = "Complete!";
 		}
 	}
@@ -71,9 +78,8 @@ public class PlayFlagManager : MonoBehaviour {
     {
         if (isGameOver)
         {
-            textobj.SetActive(true);
+            textObj01.SetActive(true);
             StartCoroutine(GO());
-
         }
     }
 
