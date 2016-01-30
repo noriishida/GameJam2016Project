@@ -49,4 +49,8 @@ public class InstanceObject : MonoBehaviour {
 
 	}
 
+	public void Nullmethod()
+	{
+		
+	}
 }

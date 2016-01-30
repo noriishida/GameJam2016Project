@@ -13,11 +13,14 @@ public class PlayFlagManager : MonoBehaviour {
 	private string objName02 = "Text02";
 	private GameObject textObj01;
 	private GameObject textObj02;
-	private Text textComponent;
+	private Text textComponent01;
+	private Text textComponent02;
+	private MoveScene moveScene;
 
 	public GameObject InstanceManager;
 	public delegate void ScoreUpdate();
 	public ScoreUpdate scoreUpdate;
+
 
 	void Start () 
 	{
@@ -28,22 +31,24 @@ public class PlayFlagManager : MonoBehaviour {
 
 		textObj01 = GameObject.Find (objName01);
 		textObj02 = GameObject.Find (objName02);
-		textObj02.SetActive (false);
-		textComponent = textObj01.GetComponent<Text> ();
+		textComponent01 = textObj01.GetComponent<Text> ();
+		textComponent02 = textObj02.GetComponent<Text> ();
+		moveScene = FindObjectOfType<MoveScene> ();
+
 		StartCoroutine (CountDown());
     }
 
 	IEnumerator CountDown()
 	{
-		textComponent.text = "";
+		textComponent01.text = "";
 		yield return new WaitForSeconds (1);
-		textComponent.text = "3";
+		textComponent01.text = "3";
 		yield return new WaitForSeconds (1);
-		textComponent.text = "2";
+		textComponent01.text = "2";
 		yield return new WaitForSeconds (1);
-		textComponent.text = "1";
+		textComponent01.text = "1";
 		yield return new WaitForSeconds (1);
-		textComponent.text = "START!";
+		textComponent01.text = "START!";
 		this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().OnUpdateScore;		// delegate
 
 		isPlaying = true;
@@ -57,11 +62,14 @@ public class PlayFlagManager : MonoBehaviour {
 		{
 			isPlaying = false;
 			isGameConplete = true;
-
 		}
 		GameConplete ();
         GameOver();
 		this.scoreUpdate();
+		if(isGameConplete || isGameOver)
+		{
+			moveScene.ChangeScene ();
+		}
 	}
 
 	void GameConplete()
@@ -70,7 +78,9 @@ public class PlayFlagManager : MonoBehaviour {
 		{
 			textObj01.SetActive (true);
 			textObj02.SetActive (true);
-			textComponent.text = "Complete!";
+			textComponent01.text = "Complete!";
+			textComponent02.text = "Please Any Button";
+			this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().Nullmethod;
 		}
 	}
 
@@ -80,15 +90,16 @@ public class PlayFlagManager : MonoBehaviour {
         {
             textObj01.SetActive(true);
             StartCoroutine(GO());
+			this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().Nullmethod;
         }
     }
 
     IEnumerator GO()
     {
-        textComponent.text = "";
+        textComponent01.text = "";
         yield return new WaitForSeconds(3);
-        textComponent.text = "GAMEOVER";
+        textComponent01.text = "GAMEOVER";
         yield return new WaitForSeconds(3);
-		textComponent.text = "Please Space Key";
+		textComponent01.text = "Please Space Key";
     }
 }

@@ -10,6 +10,11 @@ public class MoveScene : MonoBehaviour {
 	}
 	
 	void Update () {
+		
+	}
+
+	public void ChangeScene()
+	{
 		var inputA = Input.GetButton ("Fire1");
 		var inputB = Input.GetButton ("Fire2");
 		var inputC = Input.GetButton ("Fire3");
