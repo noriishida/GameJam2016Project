@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\HitManager.cs" />
      <Compile Include="Assets\Script\InstanceObject.cs" />
      <Compile Include="Assets\Script\PlayFlagManager.cs" />
      <Compile Include="Assets\Script\PlayerConttroller.cs" />
