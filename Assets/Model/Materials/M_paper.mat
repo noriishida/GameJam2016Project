@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M_trii_red
+  m_Name: M_paper
   m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -137,7 +137,7 @@ Material:
       data:
         first:
           name: _Outline
-        second: 0.0075
+        second: 0.0047
     m_Colors:
       data:
         first:
@@ -146,8 +146,8 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.86764705, g: 0.23143105, b: 0.13397494, a: 1}
+        second: {r: 0.96, g: 0.9701333, b: 1, a: 1}
       data:
         first:
           name: _OutlineColor
-        second: {r: 0.39705884, g: 0, b: 0, a: 1}
+        second: {r: 0.08999398, g: 0.23755582, b: 0.566, a: 1}
