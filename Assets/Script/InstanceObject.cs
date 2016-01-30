@@ -37,7 +37,7 @@ public class InstanceObject : MonoBehaviour {
 
 	public void InstanceWoods(float y)
 	{
-		var cloneWood = Instantiate(childWood, new Vector3(0,y,0), Quaternion.identity) as GameObject;
+		var cloneWood = Instantiate(childWood, new Vector3(0,0,y), childWood.transform.rotation) as GameObject;
 		cloneWood.transform.parent = parentWood.transform;
 		instanceCount += 1;
 

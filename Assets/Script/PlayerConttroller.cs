@@ -7,11 +7,12 @@ public class PlayerConttroller : MonoBehaviour {
 	private float timer;
 
 	private const float GRAVITY = 0.98f;
+	private float posZ;
 	private Vector3 mouseMove;
 
 	void Start()
 	{
-		
+		posZ = mouse.transform.position.z;
 	}
 
 	void Update () {
@@ -20,15 +21,9 @@ public class PlayerConttroller : MonoBehaviour {
 			timer = Time.deltaTime;
 			var inputX = Input.GetAxisRaw("Horizontal");
 			var inputJump = Input.GetButton("Jump");
-			gameObject.transform.Rotate (0, inputX * timer *10, 0);
+			gameObject.transform.Rotate (inputX * timer *10 ,0 , 0);
 
-			if (inputJump)
-			{
-				mouseMove = new Vector3 (0, 0, mouse.transform.position.z);
 
-				mouseMove.z -= GRAVITY;
-				mouse.transform.position = mouseMove;
-			}
 		}	
 	}
 }
