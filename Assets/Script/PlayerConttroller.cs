@@ -6,11 +6,13 @@ public class PlayerConttroller : MonoBehaviour {
 	public GameObject mouse;
 	private float timer;
 
-	private float jumpPower = -4.0f;
+	private const float GRAVITY = 0.98f;
+	private float posZ;
+	private Vector3 mouseMove;
 
 	void Start()
 	{
-		
+		posZ = mouse.transform.position.z;
 	}
 
 	void Update () {
@@ -19,17 +21,12 @@ public class PlayerConttroller : MonoBehaviour {
 			timer = Time.deltaTime;
 			var inputX = Input.GetAxisRaw("Horizontal");
 			var inputJump = Input.GetButton("Jump");
-			gameObject.transform.Rotate (0, inputX * timer *10, 0);
+			gameObject.transform.Rotate (0 ,inputX * timer *10 ,0 );
 
-//			if(inputJump)
-//			{
-//				float posZ = mouse.transform.position.z;
-//				mouse.transform.position.z += jumpPower * timer;
-//				if(mouse.transform.position.z > posZ + jumpPower)
-//				{
-//					mouse.transform.position.z += jumpPower * timer;
-//				}
-//			}
+			if(inputJump)
+			{
+				
+			}
 		}	
 	}
 }

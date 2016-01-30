@@ -8,12 +8,21 @@ public class PlayFlagManager : MonoBehaviour {
 	static public bool isGameConplete = false;
     static public bool isGameOver = false;
 
+
 	private string objName = "Text01";
-	public Text textComponent;
+	private GameObject textobj;
+	private Text textComponent;
+
+	public GameObject InstanceManager;
+	public delegate void ScoreUpdate();
+	public ScoreUpdate scoreUpdate;
 
 	void Start () 
 	{
-		textComponent = GameObject.Find (objName).GetComponent<Text> ();
+		this.scoreUpdate = () => { };
+
+		textobj = GameObject.Find (objName);
+		textComponent = textobj.GetComponent<Text> ();
 		StartCoroutine (CountDown());
         StartCoroutine(GO());
     }
@@ -29,9 +38,10 @@ public class PlayFlagManager : MonoBehaviour {
 		textComponent.text = "1";
 		yield return new WaitForSeconds (1);
 		textComponent.text = "START!";
+		this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().OnUpdateScore;		// delegate
+
 		isPlaying = true;
 		yield return new WaitForSeconds (1.5f);
-		var textobj = GameObject.Find (objName) as GameObject;
 		textobj.SetActive (false);
 	}
 	
@@ -44,14 +54,17 @@ public class PlayFlagManager : MonoBehaviour {
 
 		}
 		GameConplete ();
+<<<<<<< HEAD
         GameOver();
+=======
+		this.scoreUpdate();
+>>>>>>> 48d4e37e637edb62138b380f211f16db8747b576
 	}
 
 	void GameConplete()
 	{
 		if (isGameConplete)
 		{
-			var textobj = GameObject.Find (objName) as GameObject;
 			textobj.SetActive (true);
 			textComponent.text = "Complete!";
 		}

@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
+
+using System;
 
 public class WoodMove : MonoBehaviour 
 {
@@ -13,7 +16,7 @@ public class WoodMove : MonoBehaviour
 
 	void Start () 
 	{
-		instancePosY = wood03.position.y;
+		instancePosY = wood03.localPosition.y;
 		instanceObject = FindObjectOfType<InstanceObject>();
 	}
 	
@@ -23,11 +26,12 @@ public class WoodMove : MonoBehaviour
 		{
 			timer = Time.deltaTime;
 			gameObject.transform.localPosition -= new Vector3 (0, speed * timer, 0);
-			if (gameObject.transform.position.y <= destroyPos.position.y)
+			if (gameObject.transform.position.z <= destroyPos.position.z)
 			{
 				Destroy (gameObject);
 				instanceObject.InstanceWoods(instancePosY);
 			}
 		}
 	}
+
 }
