@@ -3,9 +3,11 @@ using System.Collections;
 
 public class HitManager : MonoBehaviour {
 
+	private PlayFlagManager playFlagManager;
+
 	void Start () 
 	{
-	
+		playFlagManager = FindObjectOfType<PlayFlagManager> ();
 	}
 	
 	void Update () 
@@ -26,9 +28,9 @@ public class HitManager : MonoBehaviour {
             //ゲームオーバー処理
             Destroy(gameObject);
             //操作フラグの切り替え
-            PlayFlagManager.isPlaying = false;
+            playFlagManager.isPlaying = false;
             //UI表示
-            PlayFlagManager.isGameOver = true;
+            playFlagManager.isGameOver = true;
 
             //スタート画面準備
             if (Input.GetKey(KeyCode.Space))

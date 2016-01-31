@@ -4,10 +4,9 @@ using System.Collections;
 
 public class PlayFlagManager : MonoBehaviour {
 
-	static public bool isPlaying;
-	static public bool isGameConplete;
-    static public bool isGameOver;
-
+	public bool isPlaying;
+	public bool isGameConplete;
+	public bool isGameOver;
 
 	private string objName01 = "Text01";
 	private string objName02 = "Text02";

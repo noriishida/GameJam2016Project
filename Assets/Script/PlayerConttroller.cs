@@ -9,16 +9,18 @@ public class PlayerConttroller : MonoBehaviour {
 	private bool jumpFlug;
 	private float originPosY;
 	private Rigidbody rb;
+	private PlayFlagManager playFlagManager;
 
 	void Start()
 	{
 		jumpFlug = false;
 		originPosY = mouse.transform.position.y;
 		rb = mouse.GetComponent<Rigidbody> ();
+		playFlagManager = FindObjectOfType<PlayFlagManager> ();
 	}
 
 	void Update () {
-		if (PlayFlagManager.isPlaying)
+		if (playFlagManager.isPlaying)
 		{
 			var inputX = Input.GetAxisRaw("Horizontal");
 			var inputJump = Input.GetButton("Jump");

@@ -13,16 +13,18 @@ public class WoodMove : MonoBehaviour
 	public Transform destroyPos;
 
 	private InstanceObject instanceObject;
+	private PlayFlagManager playFlagManager;
 
 	void Start () 
 	{
 		instancePosY = wood03.localPosition.y;
 		instanceObject = FindObjectOfType<InstanceObject>();
+		playFlagManager = FindObjectOfType<PlayFlagManager> ();
 	}
 	
 	void Update () 
 	{
-		if (PlayFlagManager.isPlaying)
+		if (playFlagManager.isPlaying)
 		{
 			timer = Time.deltaTime;
 			gameObject.transform.localPosition -= new Vector3 (0, speed * timer, 0);
