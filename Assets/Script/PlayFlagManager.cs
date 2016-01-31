@@ -81,7 +81,7 @@ public class PlayFlagManager : MonoBehaviour {
 			textObj02.SetActive (true);
 			textComponent01.text = "Complete!";
 			textComponent02.text = "Please Any Button";
-			soundManager.PlaySE (4);
+			//soundManager.PlaySE (4);
 			this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().Nullmethod;
 		}
 	}
