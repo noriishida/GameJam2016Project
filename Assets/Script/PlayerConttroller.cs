@@ -33,7 +33,7 @@ public class PlayerConttroller : MonoBehaviour {
 			var inputJump = Input.GetButton("Jump");
 			timer = Time.deltaTime;
 
-			gameObject.transform.Rotate (0 ,inputX * timer *10 ,0 );
+			gameObject.transform.Rotate (0 ,inputX * timer *40 ,0 );
 
 			if (inputJump) 
 			{
