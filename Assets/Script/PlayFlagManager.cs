@@ -57,7 +57,7 @@ public class PlayFlagManager : MonoBehaviour {
 	
 	void Update ()
 	{
-		if (InstanceObject.instanceCount >= 2)
+		if (InstanceObject.instanceCount >= 20)
 		{
 			isPlaying = false;
 			isGameConplete = true;
