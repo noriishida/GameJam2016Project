@@ -55,7 +55,7 @@ public class InstanceObject : MonoBehaviour {
 			var cloneWood = Instantiate (newEnemy, new Vector3 (0, 0, y), newEnemy.transform.rotation) as GameObject;
 			cloneWood.transform.parent = parentWood.transform;
 		}
-		else 
+		else if (timer >= 60)
 		{
 			var goalObj = Instantiate(enemy[10], new Vector3 (0, 0, y), enemy[10].transform.rotation) as GameObject;
 			goalObj.transform.parent = parentWood.transform;
