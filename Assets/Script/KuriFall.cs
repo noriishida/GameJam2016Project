@@ -22,6 +22,9 @@ public class KuriFall : MonoBehaviour {
 		if (this.fallSpeed > this.maxSpeed) this.fallSpeed = this.maxSpeed;
 
 		this.maxSpeed += addMaxSpeed * Time.deltaTime;
+
+
+		if (this.transform.localPosition.y < -10.0F) Destroy(this.gameObject);
 	
 	}
 }
