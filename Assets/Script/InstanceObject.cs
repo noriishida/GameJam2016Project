@@ -8,6 +8,10 @@ public class InstanceObject : MonoBehaviour {
 	public GameObject parentWood;
 	public GameObject childWood;
 
+	public GameObject Kuri;
+	public float startOffset = 20.0F;
+	public float threshold = 0.1F;
+
 	public GameObject[] enemy;
 
 	System.Random rnd;
@@ -51,6 +55,14 @@ public class InstanceObject : MonoBehaviour {
 	public void OnUpdateScore() {
 		this.score += this.woodSpeed * Time.deltaTime * 0.1F;
 		this.ScoreText.text = this.score.ToString("0");
+
+		//どんぐり
+		if ( Random.Range(0, 1.0F) < threshold ) {
+			GameObject kuri = Instantiate( Kuri );
+			kuri.transform.localEulerAngles = new Vector3( Random.Range( 0,360 ), 90.0F, 90.0F );
+			kuri.transform.localPosition = new Vector3(0, 0, this.startOffset);
+
+		}
 
 	}
 
