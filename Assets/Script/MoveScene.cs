@@ -24,6 +24,10 @@ public class MoveScene : MonoBehaviour {
 		var inputD = Input.GetButton ("Jump");
 		if (inputA || inputB || inputC || inputD)
 		{
+			if (sceneName == "StartScene_test")
+			{
+				Destroy( GameObject.Find ("BGMObject") );
+			}
 			Application.LoadLevel (sceneName);
 		}
 	}
