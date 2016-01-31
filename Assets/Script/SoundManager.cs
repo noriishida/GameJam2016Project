@@ -3,13 +3,20 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
 
-	// Use this for initialization
+	public AudioClip[] audio;
+	private AudioSource audioSource;
+
+
 	void Start () {
-	
+		audioSource = gameObject.GetComponent<AudioSource> ();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void PlaySE(int number)
+	{
+		audioSource.PlayOneShot (audio [number]);
 	}
 }
