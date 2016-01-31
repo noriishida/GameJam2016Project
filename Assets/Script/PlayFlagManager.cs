@@ -15,6 +15,7 @@ public class PlayFlagManager : MonoBehaviour {
 	private Text textComponent01;
 	private Text textComponent02;
 	private MoveScene moveScene;
+	private StartCameraEvent startCameraEvent;
 
 	public GameObject InstanceManager;
 	public delegate void ScoreUpdate();
@@ -33,6 +34,7 @@ public class PlayFlagManager : MonoBehaviour {
 		textComponent01 = textObj01.GetComponent<Text> ();
 		textComponent02 = textObj02.GetComponent<Text> ();
 		moveScene = FindObjectOfType<MoveScene> ();
+		startCameraEvent = FindObjectOfType<StartCameraEvent> ();
 
 		StartCoroutine (CountDown());
     }
@@ -40,13 +42,17 @@ public class PlayFlagManager : MonoBehaviour {
 	IEnumerator CountDown()
 	{
 		textComponent01.text = "";
+		startCameraEvent.second_Three ();
 		yield return new WaitForSeconds (1);
 		textComponent01.text = "3";
 		yield return new WaitForSeconds (1);
+		startCameraEvent.second_Two ();
 		textComponent01.text = "2";
 		yield return new WaitForSeconds (1);
+		startCameraEvent.second_One ();
 		textComponent01.text = "1";
 		yield return new WaitForSeconds (1);
+		startCameraEvent.second_Zero ();
 		textComponent01.text = "START!";
 		this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().OnUpdateScore;		// delegate
 
