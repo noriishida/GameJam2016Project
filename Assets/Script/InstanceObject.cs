@@ -8,6 +8,10 @@ public class InstanceObject : MonoBehaviour {
 	public GameObject parentWood;
 	public GameObject childWood;
 
+	public GameObject[] enemy;
+
+	System.Random rnd;
+
 	private WoodMove woodMove;
 	private float woodSpeed;
 
@@ -28,7 +32,7 @@ public class InstanceObject : MonoBehaviour {
 
 	void Start () 
 	{
-		
+		rnd = new System.Random();
 	}
 	
 	void Update () {
@@ -37,7 +41,8 @@ public class InstanceObject : MonoBehaviour {
 
 	public void InstanceWoods(float y)
 	{
-		var cloneWood = Instantiate(childWood, new Vector3(0,0,y), childWood.transform.rotation) as GameObject;
+		GameObject newEnemy = enemy [rnd.Next (0, 9)];
+		var cloneWood = Instantiate(newEnemy, new Vector3(0,0,y), newEnemy.transform.rotation) as GameObject;
 		cloneWood.transform.parent = parentWood.transform;
 		instanceCount += 1;
 
