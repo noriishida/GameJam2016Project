@@ -9,10 +9,13 @@ public class InstanceObject : MonoBehaviour {
 	public GameObject childWood;
 
 	public GameObject Kuri;
-	public float startOffset = 20.0F;
-	public float threshold = 0.1F;
+	public float startOffset = 128.0F;
+	public float threshold = 0.01F;
+	public float addThreshold = 0.1F;
 
 	public GameObject[] enemy;
+
+	static public int instanceCount;
 
 	System.Random rnd;
 
@@ -22,9 +25,6 @@ public class InstanceObject : MonoBehaviour {
 	public GameObject ScoreTextObjcet;
 	private Text ScoreText;
 	public float score;
-
-	//１分約２０回カウントされる
-	static public int instanceCount = 0;
 
 	void Awake() {
 		this.woodMove = this.childWood.GetComponent<WoodMove>();
@@ -48,7 +48,6 @@ public class InstanceObject : MonoBehaviour {
 		GameObject newEnemy = enemy [rnd.Next (0, 9)];
 		var cloneWood = Instantiate(newEnemy, new Vector3(0,0,y), newEnemy.transform.rotation) as GameObject;
 		cloneWood.transform.parent = parentWood.transform;
-		instanceCount += 1;
 
 	}
 
@@ -59,10 +58,13 @@ public class InstanceObject : MonoBehaviour {
 		//どんぐり
 		if ( Random.Range(0, 1.0F) < threshold ) {
 			GameObject kuri = Instantiate( Kuri );
-			kuri.transform.localEulerAngles = new Vector3( Random.Range( 0,360 ), 90.0F, 90.0F );
-			kuri.transform.localPosition = new Vector3(0, 0, this.startOffset);
+			kuri.transform.SetParent( this.parentWood.transform, false );
+			kuri.transform.localEulerAngles = new Vector3( 0.0F, Random.Range( 0,360 ), 0.0F );
+			kuri.transform.localPosition = new Vector3(0, this.startOffset, 0);
 
 		}
+
+		this.threshold += this.addThreshold * Time.deltaTime;
 
 	}
 
