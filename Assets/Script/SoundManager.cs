@@ -17,6 +17,6 @@ public class SoundManager : MonoBehaviour {
 
 	public void PlaySE(int number)
 	{
-		audioSource.PlayOneShot (audio [number]);
+		audioSource.PlayOneShot (audio[number], 0.6f);
 	}
 }
