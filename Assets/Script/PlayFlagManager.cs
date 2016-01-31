@@ -14,6 +14,7 @@ public class PlayFlagManager : MonoBehaviour {
 	private GameObject textObj02;
 	private Text textComponent01;
 	private Text textComponent02;
+	private SoundManager soundManager;
 	private MoveScene moveScene;
 	private StartCameraEvent startCameraEvent;
 
@@ -63,7 +64,7 @@ public class PlayFlagManager : MonoBehaviour {
 	
 	void Update ()
 	{
-		GameConplete ();
+		GameComplete ();
         GameOver();
 		this.scoreUpdate();
 		if(isGameComplete || isGameOver)
@@ -72,7 +73,7 @@ public class PlayFlagManager : MonoBehaviour {
 		}
 	}
 
-	void GameConplete()
+	void GameComplete()
 	{
 		if (isGameComplete)
 		{
@@ -80,6 +81,7 @@ public class PlayFlagManager : MonoBehaviour {
 			textObj02.SetActive (true);
 			textComponent01.text = "Complete!";
 			textComponent02.text = "Please Any Button";
+			soundManager.PlaySE (4);
 			this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().Nullmethod;
 		}
 	}
