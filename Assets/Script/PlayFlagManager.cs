@@ -89,17 +89,10 @@ public class PlayFlagManager : MonoBehaviour {
         if (isGameOver)
         {
             textObj01.SetActive(true);
-            StartCoroutine(GO());
-			this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().Nullmethod;
+            textObj02.SetActive(true);
+            textComponent01.text = "Miss!";
+            textComponent02.text = "Please Any Button";
+            this.scoreUpdate = this.InstanceManager.GetComponent<InstanceObject>().Nullmethod;
         }
-    }
-
-    IEnumerator GO()
-    {
-        textComponent01.text = "";
-        yield return new WaitForSeconds(3);
-        textComponent01.text = "GAMEOVER";
-        yield return new WaitForSeconds(3);
-		textComponent01.text = "Please Space Key";
     }
 }
