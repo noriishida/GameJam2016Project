@@ -42,5 +42,10 @@ public class HitManager : MonoBehaviour {
 
         }
         
+		if (collider.gameObject.tag == "Goal")
+		{
+			playFlagManager.isPlaying = false;
+			playFlagManager.isGameComplete = true;
+		}
     }
 }

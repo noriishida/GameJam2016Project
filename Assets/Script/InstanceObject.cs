@@ -13,12 +13,14 @@ public class InstanceObject : MonoBehaviour {
 	public float threshold = 0.01F;
 	public float addThreshold = 0.1F;
 
+	private float timer;
 	public GameObject[] enemy;
 
-	static public int instanceCount;
+//	static public int instanceCount;
 
 	System.Random rnd;
 
+	private PlayFlagManager playFlagManager;
 	private WoodMove woodMove;
 	private float woodSpeed;
 
@@ -36,18 +38,28 @@ public class InstanceObject : MonoBehaviour {
 
 	void Start () 
 	{
+		playFlagManager = FindObjectOfType<PlayFlagManager> ();
 		rnd = new System.Random();
 	}
 	
-	void Update () {
-
+	void Update () 
+	{
+		timer = Time.time;
 	}
 
 	public void InstanceWoods(float y)
 	{
-		GameObject newEnemy = enemy [rnd.Next (0, 9)];
-		var cloneWood = Instantiate(newEnemy, new Vector3(0,0,y), newEnemy.transform.rotation) as GameObject;
-		cloneWood.transform.parent = parentWood.transform;
+		if (timer <= 60) 
+		{
+			GameObject newEnemy = enemy [rnd.Next (0, 9)];
+			var cloneWood = Instantiate (newEnemy, new Vector3 (0, 0, y), newEnemy.transform.rotation) as GameObject;
+			cloneWood.transform.parent = parentWood.transform;
+		}
+		else 
+		{
+			var goalObj = Instantiate(enemy[10], new Vector3 (0, 0, y), enemy[10].transform.rotation) as GameObject;
+			goalObj.transform.parent = parentWood.transform;
+		}
 
 	}
 
@@ -55,13 +67,22 @@ public class InstanceObject : MonoBehaviour {
 		this.score += this.woodSpeed * Time.deltaTime * 0.1F;
 		this.ScoreText.text = this.score.ToString("0");
 
-		//どんぐり
-		if ( Random.Range(0, 1.0F) < threshold ) {
-			GameObject kuri = Instantiate( Kuri );
-			kuri.transform.SetParent( this.parentWood.transform, false );
-			kuri.transform.localEulerAngles = new Vector3( 0.0F, Random.Range( 0,360 ), 0.0F );
-			kuri.transform.localPosition = new Vector3(0, this.startOffset, 0);
-
+		if (!playFlagManager.isGameComplete || !playFlagManager.isGameOver)
+		{
+			//どんぐり
+			if (Random.Range (0, 1.0F) < threshold) {
+				GameObject kuri = Instantiate (Kuri);
+				kuri.transform.SetParent (this.parentWood.transform, false);
+				kuri.transform.localEulerAngles = new Vector3 (0.0F, Random.Range (0, 360), 0.0F);
+				kuri.transform.localPosition = new Vector3 (0, this.startOffset, 0);
+			}
+		}
+		else 
+		{
+			if (Kuri != null)
+			{
+				Destroy (Kuri);
+			}
 		}
 
 		this.threshold += this.addThreshold * Time.deltaTime;

@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayFlagManager : MonoBehaviour {
 
 	public bool isPlaying;
-	public bool isGameConplete;
+	public bool isGameComplete;
 	public bool isGameOver;
 
 	private string objName01 = "Text01";
@@ -26,7 +26,7 @@ public class PlayFlagManager : MonoBehaviour {
 	{
 		this.scoreUpdate = () => { };
 		isPlaying = false;
-		isGameConplete = false;
+		isGameComplete = false;
 		isGameOver = false;
 
 		textObj01 = GameObject.Find (objName01);
@@ -63,15 +63,10 @@ public class PlayFlagManager : MonoBehaviour {
 	
 	void Update ()
 	{
-		if (InstanceObject.instanceCount >= 20)
-		{
-			isPlaying = false;
-			isGameConplete = true;
-		}
 		GameConplete ();
         GameOver();
 		this.scoreUpdate();
-		if(isGameConplete || isGameOver)
+		if(isGameComplete || isGameOver)
 		{
 			moveScene.ChangeScene ();
 		}
@@ -79,9 +74,8 @@ public class PlayFlagManager : MonoBehaviour {
 
 	void GameConplete()
 	{
-		if (isGameConplete)
+		if (isGameComplete)
 		{
-			InstanceObject.instanceCount = 0;
 			textObj01.SetActive (true);
 			textObj02.SetActive (true);
 			textComponent01.text = "Complete!";
