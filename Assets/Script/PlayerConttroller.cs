@@ -10,6 +10,7 @@ public class PlayerConttroller : MonoBehaviour {
 	private float originPosY;
 	private Rigidbody rb;
 	private PlayFlagManager playFlagManager;
+	private SoundManager soundManager;
 
 	void Start()
 	{
@@ -17,6 +18,7 @@ public class PlayerConttroller : MonoBehaviour {
 		originPosY = mouse.transform.position.y;
 		rb = mouse.GetComponent<Rigidbody> ();
 		playFlagManager = FindObjectOfType<PlayFlagManager> ();
+		soundManager = FindObjectOfType<SoundManager> ();
 	}
 
 	void Update () {
@@ -33,6 +35,7 @@ public class PlayerConttroller : MonoBehaviour {
 				if(!jumpFlug)
 				{
 					rb.AddForce (Vector3.up * 100);
+					soundManager.PlaySE (3);
 					jumpFlug = true;
 				}
 			}
